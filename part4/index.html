@@ -3,31 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Places - HBNB</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="icon.png">
 </head>
 <body>
     <header>
         <img src="images/logo.png" alt="Logo" class="logo">
+    
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html" class="login-button">Login</a>
+        </nav>
+
     </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="login.html" class="login-button">Login</a>
-    </nav>
-
     <main>
-        <div class="place-card">
-            <h2>Cozy Apartment</h2>
-            <p>$120/night</p>
-            <button class="details-button" onclick="location.href='place.html'">View Details</button>
-        </div>
+        <section class="place-list" >
+            <div class="place-card">
+                <h2>Cozy Apartment</h2>
+                <p>$120/night</p>
+                <button class="details-button"><a href="place.html">View Details</a></button> 
+            </div>
 
-        <div class="place-card">
-            <h2>Beach House</h2>
-            <p>$300/night</p>
-            <button class="details-button" onclick="location.href='place.html'">View Details</button>
-        </div>
+            <div class="place-card">
+                <h2>Beach House</h2>
+                <p>$300/night</p>
+                <button class="details-button"><a href="place.html">View Details</a></button>
+            </div>
+
+            <div class="place-card">
+                <h2>Beach House</h2>
+                <p>$300/night</p>
+                <button class="details-button"><a href="place.html">View Details</a></button>
+            </div>
+
+            <div class="place-card">
+                <h2>Cozy Apartment</h2>
+                <p>$120/night</p>
+                <button class="details-button"><a href="place.html">View Details</a></button>
+            </div>
+
+        </section>
     </main>
 
     <footer>

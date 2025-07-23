@@ -4,42 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Details</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="icon.png">
 </head>
 <body>
     <header>
         <img src="images/logo.png" alt="Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
     </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
-    </nav>
-
     <main>
-        <section class="place-details">
-            <h2>Cozy Apartment in NYC</h2>
-            <p><strong>Host:</strong> Jane Doe</p>
-            <p><strong>Price:</strong> $120 per night</p>
-            <p><strong>Description:</strong> A cozy and modern apartment in the heart of New York City.</p>
-            <p><strong>Amenities:</strong> WiFi, Kitchen, Air Conditioning</p>
+        <section class="place">
+            <div class="place-details">
+                <h2 class="place-info">Cozy Apartment in NYC</h2>
+                <p class="place-info"><strong>Host:</strong> Jane Doe</p>
+                <p class="place-info"><strong>Price:</strong> $120 per night</p>
+                <p class="place-info"><strong>Description:</strong> A cozy and modern apartment in the heart of New York City.</p>
+                <p class="place-info"><strong>Amenities:</strong> WiFi, Kitchen, Air Conditioning</p>
+            </div>
         </section>
 
-        <section id="add-review">
-            <h2>Add a Review</h2>
-            <form id="review-form">
-                <label for="review-text">Review:</label>
-                <textarea id="review-text" name="review-text" required></textarea>
-
-                <button type="submit">Submit</button>
-            </form>
+        <section class="reviews">
+            <button>
+                <a href="add_review.html">Add</a>
+            </button>
 
             <div class="review-card">
                 <p><strong>Mary Johnson:</strong> ★★★★☆</p>
                 <p>Lovely apartment but a bit noisy at night.</p>
             </div>
+            <div class="review-card">
+                <p><strong>Mary Johnson:</strong> ★★★★☆</p>
+                <p>Lovely apartment but a bit noisy at night.</p>
+            </div>
+            <div class="review-card">
+                <p><strong>Mary Johnson:</strong> ★★★★☆</p>
+                <p>Lovely apartment but a bit noisy at night.</p>
+            </div>
+            <div class="review-card">
+                <p><strong>Mary Johnson:</strong> ★★★★☆</p>
+                <p>Lovely apartment but a bit noisy at night.</p>
+            </div>
         </section>
+
+
+
+
+
+
+
+
     </main>
     <script src="scripts.js"></script>
 </body>
