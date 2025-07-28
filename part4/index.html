@@ -12,14 +12,25 @@
     
         <nav>
             <a href="index.html">Home</a>
-            <a href="login.html" class="login-button">Login</a>
+            <div id="login-link">
+                <a href="login.html" class="login-button">Login</a>
+            </div>
         </nav>
 
     </header>
 
     <main>
+        <div>
+                <select name="price" id="price-filter">
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="all">ALL</option>
+                </select>
+        </div>
         <section class="place-list" >
-            <div class="place-card">
+            
+            <!--<div class="place-card" price=120>
                 <h2>Cozy Apartment</h2>
                 <p>$120/night</p>
                 <button class="details-button"><a href="place.html">View Details</a></button> 
@@ -35,13 +46,7 @@
                 <h2>Beach House</h2>
                 <p>$300/night</p>
                 <button class="details-button"><a href="place.html">View Details</a></button>
-            </div>
-
-            <div class="place-card">
-                <h2>Cozy Apartment</h2>
-                <p>$120/night</p>
-                <button class="details-button"><a href="place.html">View Details</a></button>
-            </div>
+            </div>-->
 
         </section>
     </main>
@@ -49,5 +54,6 @@
     <footer>
         <p>All rights reserved &copy; 2025</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

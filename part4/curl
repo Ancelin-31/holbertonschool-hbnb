@@ -1,0 +1,8 @@
+curl -X POST http://localhost:5000/api/v1/places/ -H 'accept: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MzY5NzU3MywianRpIjoiZTkzMmEyZDctNmUzNS00NzA4LTg4YWMtNDdiMDRiMmE1ZWQzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6ImZkZjc0NTBmLWZkZmMtNDE0My1iNWU0LTJhZjk2M2UxNWYxMyIsImlzX2FkbWluIjpmYWxzZX0sIm5iZiI6MTc1MzY5NzU3MywiY3NyZiI6IjFiYTYwM2JlLTY2YjQtNDc5NS1iYTdjLTdiM2Q4MmVkZTY1OCIsImV4cCI6MTc1MzY5OTM3M30.CPvrhEceZ9RxdZ-F43SHqFwXSOF_YYGG-9aj3RcCKO8' -H 'Content-Type: application/json' -d '{
+    "title": "Cozy Apartment in NYC",
+    "description": "A cozy and modern apartment in the heart of New York City.",
+    "price": 120,
+    "latitude": 1,
+    "longitude": 1,
+    "amenities": []
+}'
