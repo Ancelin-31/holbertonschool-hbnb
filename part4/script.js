@@ -6,6 +6,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const loginForm = document.getElementById('login-form');
     const token = checkAuthentication();
+    const placeDetails = document.querySelector('.place-details');
+    const placeList = document.querySelector('.place-list');
+    const reviewList = document.querySelector('.review-form');
 
     if (loginForm) {
         loginForm.addEventListener('submit', async (event) => {
@@ -24,16 +27,40 @@ document.addEventListener('DOMContentLoaded', async () => {
             loginUser(email, password);
         }
     )};
-    const places = await fetchPlaces(token).then(
-        data => { return data }
-    );
-    displayPlaces(places);
-    document.getElementById('price-filter').addEventListener('change', (event) => {
-      // Get the selected price value
-      // Iterate over the places and show/hide them based on the selected price
-    console.log(event.target.value);
-    filterPlaces(Number(event.target.value));
-  });
+    if (placeList) {
+        const places = await fetchPlaces(token).then(
+            data => { return data }
+        );
+        displayPlaces(places);
+        document.getElementById('price-filter').addEventListener('change', (event) => {
+            // Get the selected price value
+            // Iterate over the places and show/hide them based on the selected price
+            console.log(event.target.value);
+            filterPlaces(Number(event.target.value));
+        });
+    }
+
+    if (placeDetails) {
+        const place = await fetchPlacesDetails(token).then(
+            data => { return data }
+    )
+    console.log(place)
+    displayPlaceDetails(place);
+  }
+
+    if (reviewForm) {
+          reviewForm.addEventListener('add', async (event) => {
+              event.preventDefault();
+              // Get review text from form
+            const place = await fetchReviews(token).then(
+            data => { return data }
+            );
+            displayReviews(reviews);
+              // Make AJAX request to submit review
+            addReview(reviews);
+              // Handle the response
+        });
+    }
 });
 
 async function loginUser(email, password) {
@@ -140,7 +167,7 @@ function displayPlaces(places) {
         button.className = 'details-button';
         div.appendChild(button)
         let a = document.createElement('a');
-        a.setAttribute('href', 'place.html');
+        a.setAttribute('href', `place.html?id=${places[place_index].id}`);
         a.innerHTML = 'View Details';
         button.appendChild(a);
 
@@ -162,3 +189,83 @@ function filterPlaces(price) {
         }
     }
 }
+
+async function fetchPlacesDetails(token) {
+      // Make a GET request to fetch places data
+      const id = getPlaceIDfromURL();
+      const places = document.getElementById('places')
+      const response = await fetch(`http://127.0.0.1:5000/api/v1/places/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+
+        } else {
+            const errorData = await response.json();
+            displayError(errorData.message || "Fetch failed. Please try again.");
+        }
+      // Include the token in the Authorization header
+      // Handle the response and pass the data to displayPlaces function
+  }
+
+function getPlaceIDfromURL() {
+    let placeID = window.location.search;
+    placeID = placeID.split('=')[1];
+    return(placeID);
+}
+
+function displayPlaceDetails(place) {
+      // Clear the current content of the places list
+      // Iterate over the places data
+      let place_details = document.querySelector('.place-details');
+      let last_element = place_details.lastElementChild;
+      
+      while (last_element) {
+        place_details.removeChild(last_element);
+        last_element = place_details.lastElementChild;
+      }
+
+        // For each place, create a div element and set its content
+        // Append the created element to the places list
+
+        let h2 = document.createElement('h2');
+        h2.textContent = place.title;
+        h2.classList.add('place-info');
+        place_details.appendChild(h2);
+        
+        let p1 = document.createElement('p');
+        p1.textContent = place.description;
+        p1.classList.add('place-info');
+        place_details.appendChild(p1);
+
+        let p2 = document.createElement('p');
+        p2.textContent = `$${place.price}/night`;
+        p2.classList.add('place-info');
+        place_details.appendChild(p2);
+
+        let p3 = document.createElement('p');
+        p3.textContent = `Latitude: ${place.latitude}`;
+        p3.classList.add('place-info');
+        place_details.appendChild(p3);
+
+        let p4 = document.createElement('p');
+        p4.textContent = `Longitude: ${place.longitude}`;
+        p4.classList.add('place-info');
+        place_details.appendChild(p4);
+
+        let amenities_list = document.createElement('ul');
+        amenities_list.classList.add('place-info');
+
+        for (i = 0; i < place.amenities.length; i++) {
+            let li = document.createElement('li');
+            li.textContent = place.amenities[i].name;
+            amenities_list.appendChild(li);
+        }
+        place_details.appendChild(amenities_list);
+  }

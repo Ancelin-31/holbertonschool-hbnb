@@ -1,8 +1,18 @@
-curl -X POST http://localhost:5000/api/v1/places/ -H 'accept: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MzY5NzU3MywianRpIjoiZTkzMmEyZDctNmUzNS00NzA4LTg4YWMtNDdiMDRiMmE1ZWQzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6ImZkZjc0NTBmLWZkZmMtNDE0My1iNWU0LTJhZjk2M2UxNWYxMyIsImlzX2FkbWluIjpmYWxzZX0sIm5iZiI6MTc1MzY5NzU3MywiY3NyZiI6IjFiYTYwM2JlLTY2YjQtNDc5NS1iYTdjLTdiM2Q4MmVkZTY1OCIsImV4cCI6MTc1MzY5OTM3M30.CPvrhEceZ9RxdZ-F43SHqFwXSOF_YYGG-9aj3RcCKO8' -H 'Content-Type: application/json' -d '{
-    "title": "Cozy Apartment in NYC",
-    "description": "A cozy and modern apartment in the heart of New York City.",
-    "price": 120,
-    "latitude": 1,
-    "longitude": 1,
-    "amenities": []
+curl -X 'PUT' \
+  'http://127.0.0.1:5000/api/v1/places/424f3ff0-18a1-48cc-9714-35c4514e4cb6' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1Mzc5OTI0NiwianRpIjoiYTFjODU3NmQtNTdkYy00ODJmLWFiZmUtMTNhMzY3NjM4YmE5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6ImZkZjc0NTBmLWZkZmMtNDE0My1iNWU0LTJhZjk2M2UxNWYxMyIsImlzX2FkbWluIjpmYWxzZX0sIm5iZiI6MTc1Mzc5OTI0NiwiY3NyZiI6ImJkN2NkM2M3LTYzM2ItNDJlNy05MTc2LWZkMWQ4N2M0OGU0ZCIsImV4cCI6MTc1MzgwMTA0Nn0.vqHAz8fUZn7bAjM1RnAtJqtiEKi6zfyYevf1Q-5rBSQ' \
+  -d '{
+  "title": "Cozy Apartment in NYC",
+  "description": "A cozy and modern apartment in the heart of New York City.",
+  "price": 120,
+  "latitude": 1,
+  "longitude": 1,
+  "amenities": [
+    "38e11af8-135e-4a5d-8825-3e4d52cc0c84",
+    "264e5e8a-0e9d-4fce-98df-5ce4f0fd8092",
+    "4a9056a2-178f-4833-99b9-a32b8a930897",
+    "66820338-2bfa-4a83-9482-7827f27d1a78"
+  ]
 }'

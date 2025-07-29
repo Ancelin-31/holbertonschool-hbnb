@@ -77,12 +77,12 @@ class PlaceResource(Resource):
         data = api.payload
         claims = get_jwt()
         is_admin = claims.get('is_admin', False)
-        user_id = get_jwt_identity()
+        user = get_jwt_identity()
 
         try:
             place = facade.get_place(place_id)
 
-            if not is_admin and str(place.owner_id) != str(user_id):
+            if not is_admin and str(place.owner_id) != str(user["id"]):
                 return {'error': 'Unauthorized action'}, 403
 
             place = facade.update_place(place_id, data)
