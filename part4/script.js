@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = checkAuthentication();
     const placeDetails = document.querySelector('.place-details');
     const placeList = document.querySelector('.place-list');
-    const reviewList = document.querySelector('.review-form');
+    const reviewForm = document.querySelector('.review-form');
 
     if (loginForm) {
         loginForm.addEventListener('submit', async (event) => {
@@ -46,19 +46,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     )
     console.log(place)
     displayPlaceDetails(place);
+    displayReviews(place);
   }
 
     if (reviewForm) {
-          reviewForm.addEventListener('add', async (event) => {
+          reviewForm.addEventListener('submit', async (event) => {
               event.preventDefault();
-              // Get review text from form
-            const place = await fetchReviews(token).then(
-            data => { return data }
-            );
-            displayReviews(reviews);
+              // Get review text and rating from form
+            const reviewText = document.getElementById('review').value.trim();
+            const rating = document.getElementById('rating').value;
+            const place_id = getPlaceIDfromURL();
+            const reviewData = {
+                text: reviewText,
+                rating: Number(rating),
+                place_id: place_id
+            };
+
               // Make AJAX request to submit review
-            addReview(reviews);
-              // Handle the response
+            try {
+                const response = await fetch('http://127.0.0.1:5000/api/v1/reviews/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(reviewData)
+                });
+
+                if (response.ok) {
+                    alert('Review submitted successfully!');
+                    reviewForm.reset();
+                } else {
+                    const errorData = await response.json();
+                    displayError(errorData.message || "Failed to submit review.");
+                }
+            } catch (error) {
+                displayError("Network error. Please try again later.");
+                console.error('Review error:', error);
+            }
         });
     }
 });
@@ -269,3 +294,32 @@ function displayPlaceDetails(place) {
         }
         place_details.appendChild(amenities_list);
   }
+
+async function displayReviews(place) {
+    const reviewsContainer = document.getElementById('reviews-container');
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/api/v1/places/${place_id}/reviews/`);
+            if (response.ok) {
+                const reviews = await response.json();
+                reviewsContainer.innerHTML = '';
+                if (reviews.length === 0) {
+                    reviewsContainer.innerHTML = '<p>No reviews yet.</p>';
+                } else {
+                    reviews.forEach(review => {
+                        const reviewDiv = document.createElement('div');
+                        reviewDiv.className = 'review';
+                        reviewDiv.innerHTML = `
+                            <strong>Rating:</strong> ${review.rating} <br>
+                            <strong>Review:</strong> ${review.text}
+                        `;
+                        reviewsContainer.appendChild(reviewDiv);
+                    });
+                }
+            } else {
+                reviewsContainer.innerHTML = '<p>Could not load reviews.</p>';
+            }
+        } catch (error) {
+            reviewsContainer.innerHTML = '<p>Error loading reviews.</p>';
+            console.error(error);
+        }
+    };
