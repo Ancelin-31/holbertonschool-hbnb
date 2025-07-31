@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Review</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <img alt="logo" src="images/logo.png">
+            <a href="index.html" id="index-link" class="index-button">Home</a>
+            <div id="login-link">
+                <a href="login.html" class="login-button">Login</a>
+            </div>
+        </nav>
+    </header>
     <main>
         <!-- Add something to identify the place you're reviewing -->
         <form id="review-form">
@@ -14,7 +23,7 @@
             <label for="review">Your Review:</label>
             <textarea id="review" name="review" required></textarea>
             <label for="rating">Rating:</label>
-                <select name="Rating">
+                <select name="Rating" id="rating-value">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -25,6 +34,6 @@
         </form>
         <div id="reviews-container"></div>
     </main>
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
