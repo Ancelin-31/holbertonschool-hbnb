@@ -2,9 +2,11 @@
 
 ## Overview
 
-HBNB is a simplified clone of the Airbnb platform, designed as a learning project to demonstrate full-stack web development, RESTful API design, and object-oriented programming in Python. The project is structured to separate concerns between models, services, persistence, and API layers.
+HBNB is a simplified clone of the Airbnb platform, designed as a learning project to demonstrate full-stack web development, RESTful API design, and object-oriented programming in Python. The project is structured to separate concerns between models, services, persistence, and API layers, and a complete front-end interface.
 
 ## Features
+
+## Back-end
 
 - User registration and profile management
 - Place listing with price, location, and description
@@ -12,10 +14,21 @@ HBNB is a simplified clone of the Airbnb platform, designed as a learning projec
 - User reviews and ratings for places
 - RESTful API endpoints for all major resources
 
+## Front-end
+
+- Homepage (index.html): Displays all places with filterable amenities and price ranges
+- Login page (login.html): User authentication interface
+- Place details (place.html):
+- View detailed information about a specific place
+- Filter reviews by price
+- Add a new review directly from the UI
+
 ## Project Structure
 
+### Back-end
+
 ```text
-part2/hbnb/
+part3/hbnb/
 ├── app/
 │   ├── api/           # API namespaces and routes
 │   ├── models/        # Data models (User, Place, Amenity, Review)
@@ -25,6 +38,19 @@ part2/hbnb/
 ├── requirements.txt   # Python dependencies
 ├── run.py             # Application entry point
 ├── README.md
+```
+
+### Front-end
+
+```text
+part4/hbnb/
+├── styles.css         # Style for the front-end
+├── scripts.js         # Scripts file
+├── index.html         # Home Page
+├── login.html         # Login Page
+├── place.html         # Place Page
+├── add_review.html    # Add review page
+├── images/            # Folder for images
 ```
 
 ## Getting Started
@@ -42,7 +68,7 @@ part2/hbnb/
 
    ```bash
    git clone <repository-url>
-   cd part2/hbnb
+   cd part3/hbnb
    ```
 
 2. **Create and activate a virtual environment:**
@@ -65,6 +91,11 @@ python run.py
 ```
 
 The API will be available at `http://localhost:5000/`.
+Front-end can be opened by launching index.html, login.html, and place.html from the templates/ directory in your browser
+You have to launch an http server by the command :
+```bash
+python3 -m http.server
+```
 
 ### Running Tests
 
@@ -82,11 +113,26 @@ python -m app.api.v1.test
 
 Similar endpoints exist for places, amenities, and reviews.
 
+## Front-End Usage
+
+### Homepage (index.html):
+- Displays all available places
+- Filter by price range and amenities
+- Responsive layout for mobile and desktop
+
+### Login Page (login.html):
+- Allows users to log in
+- Interacts with back-end authentication endpoints
+
+### Place Details (place.html):
+- View extended place information
+- Filter reviews by price
+- Add reviews through a dynamic form
+
 ## Conclusion
 
-This project is for educational purposes.
-It has been made by Dorine Lemee et Ancelin Chevallier
+This project was built for educational purposes to explore full-stack development using Python and JavaScript, structured APIs, and user-centric UI design.
 
 ---
 
-*Project by Holberton School students : Ancelin and Dorine.
+Project by Holberton School students : Ancelin and Dorine.
